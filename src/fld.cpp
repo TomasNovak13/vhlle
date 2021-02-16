@@ -12,7 +12,7 @@
 * the results obtained with such modified code. Any publication of results    *
 * obtained using this code must include the reference to                      *
 * arXiv:1312.4160 [nucl-th] or the published version of it.                   *
-*                                                                             *
+*Tomas                                                                             *
 *******************************************************************************/
 
 #include <iostream>
