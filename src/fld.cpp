@@ -12,7 +12,7 @@
 * the results obtained with such modified code. Any publication of results    *
 * obtained using this code must include the reference to                      *
 * arXiv:1312.4160 [nucl-th] or the published version of it.                   *
-*Tomas                                                                             *
+*                                                                             *
 *******************************************************************************/
 
 #include <iostream>
@@ -37,7 +37,7 @@ using namespace std;
 
 namespace output{  // a namespace containing all the output streams
   ofstream fkw, fkw_dim, fxvisc, fyvisc, fdiagvisc, fx,
-     fy, fdiag, fz, faniz, f2d, ffreeze;
+     fy, fdiag, fz, faniz, f2d, ffreeze, maniz;
 }
 
 // returns the velocities in cartesian coordinates, fireball rest frame.
@@ -132,6 +132,8 @@ void Fluid::initOutput(const char *dir, double tau0) {
  outz.append("/outz.dat");
  string outaniz = dir;
  outaniz.append("/out.aniz.dat");
+ string outmaniz = dir;
+ outmaniz.append("/out.maniz.dat");
  string out2d = dir;
  out2d.append("/out2D.dat");
  string outfreeze = dir;
@@ -145,12 +147,15 @@ void Fluid::initOutput(const char *dir, double tau0) {
  output::fyvisc.open(outyvisc.c_str());
  output::fdiagvisc.open(outdiagvisc.c_str());
  output::faniz.open(outaniz.c_str());
+ output::maniz.open(outmaniz.c_str());
  output::ffreeze.open(outfreeze.c_str());
  //################################################################
  // important remark. for correct diagonal output, nx=ny must hold.
  //################################################################
  outputGnuplot(tau0);
  output::faniz << "#  tau  <<v_T>>  e_p  e'_p  (to compare with SongHeinz)\n";
+ output::maniz << "#  MomAniz6(i=1)\n";
+
 }
 
 void Fluid::correctImagCells(void) {
@@ -686,6 +691,49 @@ void Fluid::outputSurface(double tau) {
 #endif
  if (nelements == 0) exit(0);
 }
+
+void Fluid::outputAniz(double tau) {
+  double eps_p_num = 0., eps_p_den = 0., psi = 0., phi = 0., order = 2., q_1 = 0., q_2 = 0., //Tomas variables
+//Space averaging of Q's
+  //order n=1
+  order = 2;
+  for (int ix = 2; ix < nx - 2; ix++)
+   for (int iy = 2; iy < ny - 2; iy++)
+    for (int iz = 2; iz < nz - 2; iz++) {
+  Cell *c = getCell(ix, iy, iz);
+  getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
+  eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
+// index T^{i1} i=1 , vz or as upwards tanh(vz)?
+  phi=atan(vx / vy);
+  q_1+=(vx*vx*(e+p)/(1. - vx * vx - vy * vy - vz*vz)+p) * cos(order*phi);
+  q_2+=(vx*vy*(e+p)/(1. - vx * vx - vy * vy - vz*vz)) * sin(order*phi);
+  }
+
+  psi=atan( q_1 / q_2 );
+
+  //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den
+
+    for (int ix = 2; ix < nx - 2; ix++)
+     for (int iy = 2; iy < ny - 2; iy++)
+      for (int iz = 2; iz < nz - 2; iz++) {
+        Cell *c = getCell(ix, iy, iz);
+        getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
+        eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
+  // index T^{i1} i=1 , [vz or as upwards tanh(vz)?]
+  phi=atan(vx / vy);
+
+  eps_p_num += sqrt((vx * (e + p)/(1. - vx * vx - vy * vy - vz * vz)) *
+  ( vx *( e + p )/(1. - vx * vx - vy * vy - vz * vz)) + ( vy * ( e + p )/
+  (1. - vx * vx - vy * vy - vz*vz))*(vy * (e+p) / (1. - vx * vx - vy * vy - vz*vz))) *
+  cos(order*(phi-psi));
+  eps_p_den += ( e + p ) / (1. - vx * vx - vy * vy - vz*vz ) - p;
+  }
+
+
+  output::maniz << setw(12) << eps_p_num/eps_p_den << endl;
+  cout << setw(10) << eps_p_num/eps_p_den << setw(10) << "MomAniz" << endl;
+}
+
 
 void Fluid::outputCorona(double tau) {
  static double nbSurf = 0.0;
