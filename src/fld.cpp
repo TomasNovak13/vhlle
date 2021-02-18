@@ -155,7 +155,6 @@ void Fluid::initOutput(const char *dir, double tau0) {
  outputGnuplot(tau0);
  output::faniz << "#  tau  <<v_T>>  e_p  e'_p  (to compare with SongHeinz)\n";
  output::maniz << "#  MomAniz6(i=1)\n";
-
 }
 
 void Fluid::correctImagCells(void) {
@@ -693,10 +692,10 @@ void Fluid::outputSurface(double tau) {
 }
 
 void Fluid::outputAniz(double tau) {
-  double eps_p_num = 0., eps_p_den = 0., psi = 0., phi = 0., order = 2., q_1 = 0., q_2 = 0., //Tomas variables
+  double eps_p_num = 0., eps_p_den = 0., psi = 0., phi = 0., order = 2., q_1 = 0., q_2 = 0.; //Tomas variables
+  double e, nb, nq, ns, vx, vy, vz, t, mub, muq, mus, p;
 //Space averaging of Q's
   //order n=1
-  order = 2;
   for (int ix = 2; ix < nx - 2; ix++)
    for (int iy = 2; iy < ny - 2; iy++)
     for (int iz = 2; iz < nz - 2; iz++) {
@@ -704,12 +703,12 @@ void Fluid::outputAniz(double tau) {
   getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
   eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
 // index T^{i1} i=1 , vz or as tanh(vz)?
-  phi=atan(vx / vy);
+  phi=atan2(vy, vx);
   q_1+=(vx*vx*(e+p)/(1. - vx * vx - vy * vy - vz*vz)+p) * cos(order*phi);
   q_2+=(vx*vy*(e+p)/(1. - vx * vx - vy * vy - vz*vz)) * sin(order*phi);
   }
 
-  psi=atan( q_1 / q_2 );
+  psi=atan2(q_2, q_1);
   //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den
 
     for (int ix = 2; ix < nx - 2; ix++)
@@ -719,7 +718,7 @@ void Fluid::outputAniz(double tau) {
         getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
         eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
   // index T^{i1} i=1 , [vz or as upwards tanh(vz)?]
-  phi=atan(vx / vy);
+  phi=atan2(vy, vx);
 
   eps_p_num += sqrt((vx * (e + p)/(1. - vx * vx - vy * vy - vz * vz)) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - vz * vz)) + ( vy * ( e + p )/
