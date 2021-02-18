@@ -703,14 +703,13 @@ void Fluid::outputAniz(double tau) {
   Cell *c = getCell(ix, iy, iz);
   getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
   eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
-// index T^{i1} i=1 , vz or as upwards tanh(vz)?
+// index T^{i1} i=1 , vz or as tanh(vz)?
   phi=atan(vx / vy);
   q_1+=(vx*vx*(e+p)/(1. - vx * vx - vy * vy - vz*vz)+p) * cos(order*phi);
   q_2+=(vx*vy*(e+p)/(1. - vx * vx - vy * vy - vz*vz)) * sin(order*phi);
   }
 
   psi=atan( q_1 / q_2 );
-
   //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den
 
     for (int ix = 2; ix < nx - 2; ix++)
