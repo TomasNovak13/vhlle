@@ -706,14 +706,14 @@ void Fluid::outputAniz(double tau) {
   eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
 // index T^{i1} i=1 , vz or as tanh(vz)?
   phi=atan2(vy, vx);
+  cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
   q_1+=(vx*vx*(e+p)/(1. - vx * vx - vy * vy - vz*vz)+p) * cos(order*phi);
   q_2+=(vx*vy*(e+p)/(1. - vx * vx - vy * vy - vz*vz)) * sin(order*phi);
-  cout << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << vy <<  setw(10) << vx << endl;
+  cout << p << setw(10) << "tlak" << setw(10) << e << setw(10) << "energie" << setw(10) << vz  << setw(10) << "those are Q's" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << vy <<  setw(10) << vx << endl;
 
   }
 
   psi=atan2(q_2, q_1);
-  cout << "this is psi"  <<  setw(10) << psi << endl;
 
   //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den
 
