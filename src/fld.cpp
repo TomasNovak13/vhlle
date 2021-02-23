@@ -706,16 +706,16 @@ void Fluid::outputAniz(double tau) {
   getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
   eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
 // index T^{i1} i=1 , vz or as tanh(vz)?
-  phi=atan2(vy, vx);
+  phi = atan2( vy , vx );
   cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
-  // q_1=q_1+(vx*vx*(e+p)/(1. - vx * vx - vy * vy - vz*vz)+p) * cos(order*phi);
-  q_2+=(vx*vy*(e+p)/(1. - vx * vx - vy * vy - vz*vz)) * sin(order*phi);
+  q_1 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order * phi);
+  q_2 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order * phi );
 
 cout << "just q_1" << setw(10) << q_1 << endl;
   //cout << (1. - vx * vx - vy * vy - vz*vz) << setw(10) << "gamma" << setw(10) << e << setw(10) << "energie" << setw(10) << (vx*vy*(e+p))  << setw(10) << "v_z" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << cos(order*phi) <<  setw(10) << sin(order*phi) << endl;
   }
 
-  psi=atan2(q_2, q_1);
+  psi = atan2( q_2 , q_1 );
 
   //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den
 
@@ -729,11 +729,11 @@ cout << "just q_1" << setw(10) << q_1 << endl;
   phi=atan2(vy, vx);
   cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
-  eps_p_num += sqrt((vx * (e + p)/(1. - vx * vx - vy * vy - vz * vz)) *
-  ( vx *( e + p )/(1. - vx * vx - vy * vy - vz * vz)) + ( vy * ( e + p )/
-  (1. - vx * vx - vy * vy - vz*vz))*(vy * (e+p) / (1. - vx * vx - vy * vy - vz*vz))) *
+  eps_p_num += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
   cos(order*(phi-psi));
-  eps_p_den += ( e + p ) / (1. - vx * vx - vy * vy - vz*vz ) - p;
+  eps_p_den += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
   }
 
 
