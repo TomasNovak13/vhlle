@@ -694,6 +694,7 @@ void Fluid::outputSurface(double tau) {
 void Fluid::outputAniz(double tau) {
   double eps_p_num = 0., eps_p_den = 0., psi = 0., phi = 0., order = 2., q_1 = 0., q_2 = 0.; //Tomas variables
   double e, nb, nq, ns, vx, vy, vz, t, mub, muq, mus, p;
+  cout << "initiated outputAniz" << endl;
 //Space averaging of Q's
   //order n=1
   for (int ix = 2; ix < nx - 2; ix++)
@@ -706,9 +707,13 @@ void Fluid::outputAniz(double tau) {
   phi=atan2(vy, vx);
   q_1+=(vx*vx*(e+p)/(1. - vx * vx - vy * vy - vz*vz)+p) * cos(order*phi);
   q_2+=(vx*vy*(e+p)/(1. - vx * vx - vy * vy - vz*vz)) * sin(order*phi);
+  cout << q_1 << "those are Q's"  <<  setw(10) << q_2 << endl;
+
   }
 
   psi=atan2(q_2, q_1);
+  cout << "this is psi"  <<  setw(10) << psi << endl;
+
   //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den
 
     for (int ix = 2; ix < nx - 2; ix++)
@@ -719,6 +724,7 @@ void Fluid::outputAniz(double tau) {
         eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
   // index T^{i1} i=1 , [vz or as upwards tanh(vz)?]
   phi=atan2(vy, vx);
+  cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
   eps_p_num += sqrt((vx * (e + p)/(1. - vx * vx - vy * vy - vz * vz)) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - vz * vz)) + ( vy * ( e + p )/
