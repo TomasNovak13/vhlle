@@ -19,6 +19,7 @@
 #include <fstream>
 #include <iomanip>
 #include <cmath>
+#include <math.h>
 #include <algorithm>
 #include "inc.h"
 #include "rmn.h"
@@ -707,7 +708,7 @@ void Fluid::outputAniz(double tau) {
   phi=atan2(vy, vx);
   q_1+=(vx*vx*(e+p)/(1. - vx * vx - vy * vy - vz*vz)+p) * cos(order*phi);
   q_2+=(vx*vy*(e+p)/(1. - vx * vx - vy * vy - vz*vz)) * sin(order*phi);
-  cout << q_1 << "those are Q's"  <<  setw(10) << q_2 << endl;
+  cout << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << vy <<  setw(10) << vx << endl;
 
   }
 
