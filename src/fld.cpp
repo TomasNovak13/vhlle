@@ -709,7 +709,7 @@ void Fluid::outputAniz(double tau) {
   cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
   q_1+=(vx*vx*(e+p)/(1. - vx * vx - vy * vy - vz*vz)+p) * cos(order*phi);
   q_2+=(vx*vy*(e+p)/(1. - vx * vx - vy * vy - vz*vz)) * sin(order*phi);
-  cout << p << setw(10) << "tlak" << setw(10) << e << setw(10) << "energie" << setw(10) << vz  << setw(10) << "those are Q's" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << vy <<  setw(10) << vx << endl;
+  cout << p << setw(10) << "tlak" << setw(10) << e << setw(10) << "energie" << setw(10) << vz  << setw(10) << "v_z" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << vy <<  setw(10) << vx << endl;
 
   }
 
