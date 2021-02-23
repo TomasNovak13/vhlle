@@ -710,7 +710,7 @@ void Fluid::outputAniz(double tau) {
   cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
   q_1=q_1+(vx*vx*(e+p)/(1. - vx * vx - vy * vy - vz*vz)+p) * cos(order*phi);
   q_2+=(vx*vy*(e+p)/(1. - vx * vx - vy * vy - vz*vz)) * sin(order*phi);
-  cout << p << setw(10) << "gamma" << setw(10) << e << setw(10) << "energie" << setw(10) << vz  << setw(10) << "v_z" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << cos(order*phi) <<  setw(10) << sin(order*phi) << endl;
+  cout << (1. - vx * vx - vy * vy - vz*vz) << setw(10) << "gamma" << setw(10) << e << setw(10) << "energie" << setw(10) << (vx*vy*(e+p)  << setw(10) << "v_z" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << cos(order*phi) <<  setw(10) << sin(order*phi) << endl;
   }
 
   psi=atan2(q_2, q_1);
