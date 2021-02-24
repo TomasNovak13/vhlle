@@ -285,7 +285,7 @@ int main(int argc, char **argv) {
 
  f->initOutput(outputDir.c_str(), tau0);
  f->outputCorona(tau0);
- f->outputAniz(tau0);
+ f->outputManiz(tau0);
 
 
  bool resized = false; // flag if the grid has been resized
