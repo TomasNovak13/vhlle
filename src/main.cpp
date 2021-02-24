@@ -307,7 +307,7 @@ int main(int argc, char **argv) {
    h->performStep();
   f->outputGnuplot(h->getTau());
   f->outputSurface(h->getTau());
-  f->outputAniz(h->getTau());
+  f->outputManiz(h->getTau());
 
   if(h->getTau()>=tauResize and resized==false) {
    cout << "grid resize\n";

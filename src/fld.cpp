@@ -155,7 +155,7 @@ void Fluid::initOutput(const char *dir, double tau0) {
  //################################################################
  outputGnuplot(tau0);
  output::faniz << "#  tau  <<v_T>>  e_p  e'_p  (to compare with SongHeinz)\n";
- output::maniz << "#  MomAniz6(i=1)\n";
+ output::maniz << "#  Maniz(1)(i=1, n=2)         Maniz(1)(i=1, n=3)         Maniz(2)(i=1, n=2)\n";
 }
 
 void Fluid::correctImagCells(void) {
@@ -692,10 +692,11 @@ void Fluid::outputSurface(double tau) {
  if (nelements == 0) exit(0);
 }
 
-void Fluid::outputAniz(double tau) {
-  double eps_p_num = 0., eps_p_den = 0., psi = 0., phi = 0., order = 2., q_1 = 0., q_2 = 0.; //Tomas variables
+void Fluid::outputManiz(double tau) {
+  double eps_p_num1 = 0., eps_p_den1 = 0., eps_p_num2 = 0., eps_p_den2 = 0., eps_p_num3 = 0., eps_p_den3 = 0., psi1 = 0., psi2=.0, phi = 0., order1 = 2., order2 = 3.,
+        q_1 = 0., q_2 = 0., q_3 = 0., q_4 = 0.; //Tomas variables
   double e, nb, nq, ns, vx, vy, vz, t, mub, muq, mus, p;
-  cout << "initiated outputAniz" << endl;
+  cout << "initiated outputManiz" << endl;
 //Space averaging of Q's
   //order n=1
   q_1=0;
@@ -705,19 +706,22 @@ void Fluid::outputAniz(double tau) {
   Cell *c = getCell(ix, iy, iz);
   getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
   eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
-// index T^{i1} i=1 , vz or as tanh(vz)?
+// index T^{i1} i=1
   phi = atan2( vy , vx );
   //cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
-  q_1 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order * phi);
-  q_2 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order * phi );
+  q_1 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order1 * phi);
+  q_2 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order1 * phi );
+  q_3 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order2 * phi);
+  q_4 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order2 * phi );
 
 //cout << "just q_1" << setw(10) << q_1 << endl;
   //cout << (1. - vx * vx - vy * vy - vz*vz) << setw(10) << "gamma" << setw(10) << e << setw(10) << "energie" << setw(10) << (vx*vy*(e+p))  << setw(10) << "v_z" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << cos(order*phi) <<  setw(10) << sin(order*phi) << endl;
   }
 
-  psi = atan2( q_2 , q_1 );
-  cout << psi << setw(10) << "<- psi" << setw(10) << q_1 << setw(10) << "<- q_1" << setw(10) << q_2 << setw(10) << "<- q_2" << endl;
+  psi1 = atan2( q_2 , q_1 );
+  //cout << psi << setw(10) << "<- psi" << setw(10) << q_1 << setw(10) << "<- q_1" << setw(10) << q_2 << setw(10) << "<- q_2" << endl;
   //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den
+  psi2 = atan2( q_4 , q_3 );
 
     for (int ix = 2; ix < nx - 2; ix++)
      for (int iy = 2; iy < ny - 2; iy++)
@@ -726,19 +730,35 @@ void Fluid::outputAniz(double tau) {
         getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
         eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
   // index T^{i1} i=1 , [vz or as upwards tanh(vz)?]
-  phi=atan2(vy, vx);
+  phi=atan2( vy , vx );
   //cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
-  eps_p_num += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num1 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
-  cos(order*(phi-psi));
-  eps_p_den += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
-  }
+  cos( order1 * ( phi - psi1 ) );
+  eps_p_den1 += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
+
+  eps_p_num2 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
+  cos( order2 * ( phi - psi2 ) );
+  eps_p_den2 += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
+
+if( vz < 0.5 ){
+  eps_p_num3 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
+  cos( order1 * ( phi - psi1 ) );
+  eps_p_den3 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) );
+}
+}
 
 
-  output::maniz << setw(12) << eps_p_num/eps_p_den << endl;
-  cout << setw(10) << eps_p_num/eps_p_den << setw(10) << "MomAniz" << endl;
+  output::maniz << setw(12) << eps_p_num1/eps_p_den1 << setw(12) << eps_p_num2/eps_p_den2 <<  setw(12) << eps_p_num3/eps_p_den3 << endl;
+  cout << setw(10) << eps_p_num1/eps_p_den1 << setw(10) << eps_p_num2/eps_p_den2 << setw(10) << eps_p_num3/eps_p_den3 << "Maniz" << endl;
 }
 
 
