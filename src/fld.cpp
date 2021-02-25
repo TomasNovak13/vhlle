@@ -743,17 +743,23 @@ void Fluid::outputManiz(double tau) {
   phi=atan2( vy , vx );
   //cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
+  //Maniz(1)[tj. T00 normalizace] i=x, order=n=1
+
   eps_p_num1 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
   cos( order1 * ( phi - psi1 ) );
   eps_p_den1 += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
 
+  //Maniz(1)[tj. T00 normalizace] i=x, order=n=2
+
   eps_p_num2 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
   cos( order2 * ( phi - psi2 ) );
   eps_p_den2 += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
+
+  //Maniz(2)[tj. T10^2+T02^2 normalizace] i=x, order=n=1 + midrap. restrikce
 
 if( vz < 0.5 ) {
   eps_p_num3 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
@@ -765,12 +771,15 @@ if( vz < 0.5 ) {
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) );
 }
 
+//Maniz(1)*r^2 [tj. T00*r^2 normalizace] i=x, order=n=1
 
   eps_p_num4 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( ix * ix + iy * iy + iz * iz ) * ( ix * ix + iy * iy + iz * iz ) *
   cos( order1 * ( phi - psi1 ) );
-  eps_p_den4 += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
+  eps_p_den4 += ( ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p ) * ( ix * ix + iy * iy + iz * iz ) * ( ix * ix + iy * iy + iz * iz );
+
+  //Maniz(2)[tj. T10^2+T02^2 normalizace] i=x, order=n=1
 
   eps_p_num5 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
