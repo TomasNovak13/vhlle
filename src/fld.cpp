@@ -783,7 +783,7 @@ if( vz < 0.5 ) {
   }
 
 
-  output::maniz <<  setw(5) << tau0 << setw(18) << eps_p_num1/eps_p_den1 << setw(18) << eps_p_num2/eps_p_den2 <<  setw(18) << eps_p_num3/eps_p_den3 << setw(18) << eps_p_num4/eps_p_den4 << setw(18) << eps_p_num5/eps_p_den5 << setw(18) << endl;
+  output::maniz <<  setw(5) << tau << setw(18) << eps_p_num1/eps_p_den1 << setw(18) << eps_p_num2/eps_p_den2 <<  setw(18) << eps_p_num3/eps_p_den3 << setw(18) << eps_p_num4/eps_p_den4 << setw(18) << eps_p_num5/eps_p_den5 << setw(18) << endl;
   cout << setw(18) << eps_p_num1/eps_p_den1 << setw(18) << eps_p_num2/eps_p_den2 << setw(18) << eps_p_num3/eps_p_den3 << setw(18) << eps_p_num4/eps_p_den4 << "Maniz" << endl;
 }
 
