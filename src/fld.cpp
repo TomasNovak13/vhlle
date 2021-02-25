@@ -715,7 +715,7 @@ void Fluid::outputManiz(double tau) {
   q_4 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order2 * phi );
   q_7 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order3 * phi);
   q_8 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order3 * phi );
-  
+
   if( ( vz * vz ) < 0.5 )
   {
     q_5 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order1 * phi);
@@ -826,7 +826,7 @@ if( ( vz * vz ) < 0.5 ) {
 
 
   output::maniz <<  setw(5) << tau << setw(18) << eps_p_num1/eps_p_den1 << setw(18) << eps_p_num2/eps_p_den2 <<  setw(18) << eps_p_num3/eps_p_den3 << setw(18) << eps_p_num4/eps_p_den4 << setw(18) << eps_p_num5/eps_p_den5  << setw(18) << eps_p_num6/eps_p_den6 << setw(18) << eps_p_num7/eps_p_den7 << setw(18) << eps_p_num8/eps_p_den8 << endl;
-  cout << setw(18) << eps_p_num1/eps_p_den1 << setw(18) << eps_p_num2/eps_p_den2 << setw(18) << eps_p_num3/eps_p_den3 << setw(18) << eps_p_num4/eps_p_den4 << setw(18) "Maniz counting" << endl;
+  cout << setw(18) << eps_p_num1/eps_p_den1 << setw(18) << eps_p_num2/eps_p_den2 << setw(18) << eps_p_num3/eps_p_den3 << setw(18) << eps_p_num4/eps_p_den4 << setw(18) << "Maniz counting" << endl;
 }
 
 
