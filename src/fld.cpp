@@ -695,7 +695,7 @@ void Fluid::outputSurface(double tau) {
 void Fluid::outputManiz(double tau) {
   double eps_p_num1 = 0., eps_p_den1 = 0., eps_p_num2 = 0., eps_p_den2 = 0., eps_p_num3 = 0., eps_p_den3 = 0., eps_p_num4 = 0., eps_p_den4 = 0., eps_p_num5 = 0., eps_p_den5 = 0., eps_p_num6 = 0., eps_p_den6 = 0., eps_p_num7 = 0., eps_p_den7 = 0., eps_p_num8 = 0., eps_p_den8 = 0.,
         psi1 = 0., psi2 = .0, psi3 = 0., psi4 = 0., phi = 0., order1 = 2., order2 = 3., order3 = 4.,
-        q_1 = 0., q_2 = 0., q_3 = 0., q_4 = 0., q_5 = 0., q_6 = 0., q_7 = 0., q_8 = 0.; //Tomas variables
+        q_1 = 0., q_2 = 0., q_3 = 0., q_4 = 0., q_5 = 0., q_6 = 0., q_7 = 0., q_8 = 0., x = 0., y = 0.; //Tomas variables
   double e, nb, nq, ns, vx, vy, vz, t, mub, muq, mus, p;
   cout << "initiated outputManiz" << endl;
 //Space averaging of Q's
@@ -707,19 +707,21 @@ void Fluid::outputManiz(double tau) {
   getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
   eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
 // index T^{i1} i=1
-  phi = atan2( vy , vx );
+  x = getX(ix) ;
+  y = getY(iy) ;
+  phi = atan2( y , x );
   //cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
   q_1 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order1 * phi);
   q_2 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order1 * phi );
-  q_3 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order2 * phi);
-  q_4 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order2 * phi );
-  q_7 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order3 * phi);
-  q_8 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order3 * phi );
 
-  if( ( vz * vz ) < 0.5 )
+  if( |vz| < 0.5 )
   {
+    q_3 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order2 * phi);
+    q_4 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order2 * phi );
     q_5 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order1 * phi);
     q_6 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order1 * phi );
+    q_7 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order3 * phi);
+    q_8 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order3 * phi );
   }
 
 
@@ -730,9 +732,9 @@ void Fluid::outputManiz(double tau) {
   psi1 = atan2( q_2 , q_1 );
   //cout << psi << setw(10) << "<- psi" << setw(10) << q_1 << setw(10) << "<- q_1" << setw(10) << q_2 << setw(10) << "<- q_2" << endl;
   //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den
-  psi2 = atan2( q_4 , q_3 );
-  psi3 = atan2( q_6 , q_5 );
-  psi4 = atan2( q_8 , q_7 );
+  psi2 = atan2( q_4 , q_3 ); //Order 2 = 3
+  psi3 = atan2( q_6 , q_5 ); //Order 1 = 2
+  psi4 = atan2( q_8 , q_7 ); // Order 3 = 4
 
 
 
@@ -743,7 +745,9 @@ void Fluid::outputManiz(double tau) {
         getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
         eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
   // index T^{i1} i=1 , [vz or as upwards tanh(vz)?]
-  phi = atan2( vy , vx );
+  x = getX(ix) ;
+  y = getY(iy) ;
+  phi = atan2( y , x );
   //cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
   //Maniz(1)[tj. T00 normalizace] i=x, order=n=1
@@ -754,25 +758,25 @@ void Fluid::outputManiz(double tau) {
   cos( order1 * ( phi - psi1 ) );
   eps_p_den1 += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
 
-  //Maniz(1)[tj. T00 normalizace] i=x, order=n=2
-
+  //Maniz(1)[tj. T00 normalizace] i=x, order=n=2 + midrap restrikce
+  if( |vz| < 0.5 ) {
   eps_p_num2 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
   cos( order2 * ( phi - psi2 ) );
   eps_p_den2 += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
-
-  //Maniz(1)[tj. T00 normalizace] i=x, order=n=4
-
+}
+  //Maniz(1)[tj. T00 normalizace] i=x, order=n=4 + midrap restrikce
+  if( |vz| < 0.5 ) {
   eps_p_num8 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
   cos( order3 * ( phi - psi4 ) );
   eps_p_den8 += ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p;
-
+}
   //Maniz(2)[tj. T10^2+T02^2 normalizace] i=x, order=n=1 + midrap. restrikce
 
-if( ( vz * vz ) < 0.5 ) {
+if( |vz| < 0.5 ) {
   eps_p_num3 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
@@ -802,7 +806,7 @@ if( ( vz * vz ) < 0.5 ) {
 
   //Maniz(2)[tj. T10^2+T02^2 normalizace] i=x, order=n=1 + restricke mid-rapidity
 
-  if( ( vz * vz ) < 0.5 ) {
+  if( |vz| < 0.5 ) {
   eps_p_num6 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
@@ -812,8 +816,8 @@ if( ( vz * vz ) < 0.5 ) {
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) );
 }
 
-  //Maniz(2)[tj. T10^2+T02^2 normalizace] i=x, order=n=2
-
+  //Maniz(2)[tj. T10^2+T02^2 normalizace] i=x, order=n=2 + midrap restrikce
+  if( |vz| < 0.5 ) {
   eps_p_num7 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
@@ -821,6 +825,7 @@ if( ( vz * vz ) < 0.5 ) {
   eps_p_den7 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) );
+  }
 
   }
 
