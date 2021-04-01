@@ -717,7 +717,7 @@ void Fluid::outputManiz(double tau) {
   q_1 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order1 * phi);
   q_2 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order1 * phi );
 
-  if( |vz| < 0.5 )
+  if( abs(vz) < 0.5 )
   {
     q_3 += ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order2 * phi);
     q_4 += ( vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order2 * phi );
@@ -754,7 +754,7 @@ void Fluid::outputManiz(double tau) {
   //cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
 //Midrap restrikce
-if( |vz| < 0.5 ) {
+if( abs(vz) < 0.5 ) {
   //Maniz(1)[tj. T00 normalizace] m=0, n=2
   eps_p_num1 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
@@ -886,8 +886,8 @@ if( |vz| < 0.5 ) {
   eps_p_den19 += (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(T0x - T0y) should be same as Maniz(3 - Iurii) m=0, n=2 [probe]
-  eps_p_num20 +=  (  ( |vx|  - |vy| ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
-  eps_p_den20 += (  ( |vx|  + |vy|  ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+  eps_p_num20 +=  (  ( abs(vx)  - abs(vy) ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+  eps_p_den20 += (  ( abs(vx)  + abs(vy)  ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 }
   }
 
