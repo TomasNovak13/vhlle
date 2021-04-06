@@ -155,8 +155,8 @@ void Fluid::initOutput(const char *dir, double tau0) {
  //################################################################
  outputGnuplot(tau0);
  output::faniz << "#  tau  <<v_T>>  e_p  e'_p  (to compare with SongHeinz)\n";
- output::maniz <<  setw(5) << "tau" << setw(18) << "eps1" << setw(18) << "eps2" << setw(18) << "eps8" << setw(18) << "eps4" << setw(18) << "eps11" <<  setw(18) << "eps12" <<  setw(18) << "eps3" << setw(18) << "eps5" << setw(18) << "eps6" << setw(18) << "eps7" << setw(18)
-  << "eps9" << setw(18) << "eps10"  << setw(18) << "eps13"  << setw(18) << "eps14"  << setw(18) << "eps15"  << setw(18) << "eps16"  << setw(18) << "eps17"  << setw(18) << "eps18" << setw(18) << "eps19" << setw(18) << "eps20" << endl;
+// output::maniz <<  setw(5) << "tau" << setw(18) << "eps1" << setw(18) << "eps2" << setw(18) << "eps8" << setw(18) << "eps4" << setw(18) << "eps11" <<  setw(18) << "eps12" <<  setw(18) << "eps3" << setw(18) << "eps5" << setw(18) << "eps6" << setw(18) << "eps7" << setw(18)
+//  << "eps9" << setw(18) << "eps10"  << setw(18) << "eps13"  << setw(18) << "eps14"  << setw(18) << "eps15"  << setw(18) << "eps16"  << setw(18) << "eps17"  << setw(18) << "eps18" << setw(18) << "eps19" << setw(18) << "eps20" << endl;
 }
 
 void Fluid::correctImagCells(void) {
@@ -695,11 +695,13 @@ void Fluid::outputSurface(double tau) {
 
 void Fluid::outputManiz(double tau) {
   double eps_p_num1 = 0., eps_p_den1 = 0., eps_p_num2 = 0., eps_p_den2 = 0., eps_p_num3 = 0., eps_p_den3 = 0., eps_p_num4 = 0., eps_p_den4 = 0., eps_p_num5 = 0., eps_p_den5 = 0., eps_p_num6 = 0., eps_p_den6 = 0., eps_p_num7 = 0., eps_p_den7 = 0., eps_p_num8 = 0., eps_p_den8 = 0., eps_p_num9 = 0., eps_p_den9 = 0.,
-   eps_p_num10 = 0., eps_p_den10 = 0.,  eps_p_num11 = 0., eps_p_den11 = 0.,  eps_p_num12 = 0., eps_p_den12 = 0.,  eps_p_num13 = 0., eps_p_den13 = 0.,  eps_p_num14 = 0., eps_p_den14 = 0.,  eps_p_num15 = 0., eps_p_den15 = 0.,  eps_p_num16 = 0., eps_p_den16 = 0.,   eps_p_num17 = 0., eps_p_den17 = 0., eps_p_num18 = 0., eps_p_den18 = 0.,  eps_p_num19 = 0., eps_p_den19 = 0.,  eps_p_num20 = 0., eps_p_den20 = 0.,
-        psi1 = 0., psi2 = .0, psi3 = 0., psi4 = 0., phi = 0., order1 = 2., order2 = 3., order3 = 4.,
-        q_1 = 0., q_2 = 0., q_3 = 0., q_4 = 0., q_5 = 0., q_6 = 0., q_7 = 0., q_8 = 0., x = 0., y = 0.; //Tomas variables
+   eps_p_num10 = 0., eps_p_den10 = 0.,  eps_p_num11 = 0., eps_p_den11 = 0.,  eps_p_num12 = 0., eps_p_den12 = 0.,  eps_p_num13 = 0., eps_p_den13 = 0.,  eps_p_num14 = 0., eps_p_den14 = 0.,  eps_p_num15 = 0., eps_p_den15 = 0.,  eps_p_num16 = 0., eps_p_den16 = 0.,   eps_p_num17 = 0., eps_p_den17 = 0., eps_p_num18 = 0.,
+   eps_p_den18 = 0.,  eps_p_num19 = 0., eps_p_den19 = 0.,  eps_p_num20 = 0., eps_p_den20 = 0., eps_p_num21 = 0., eps_p_den21 = 0., eps_p_num22 = 0., eps_p_den22 = 0., eps_p_num23 = 0., eps_p_den23 = 0., eps_p_num24 = 0., eps_p_den24 = 0.,  eps_p_num25 = 0., eps_p_den25 = 0.,  eps_p_num26 = 0., eps_p_den26 = 0.,
+     eps_p_num27 = 0., eps_p_den27 = 0.,  eps_p_num28 = 0., eps_p_den28 = 0.,
+        psi1 = 0., psi2 = .0, psi3 = 0., psi4 = 0.,  psi5 = 0.,  psi6 = 0.,  psi7 = 0., psi8 = 0., phi = 0., order1 = 2., order2 = 3., order3 = 4.,
+        q_1 = 0., q_2 = 0., q_3 = 0., q_4 = 0., q_5 = 0., q_6 = 0., q_7 = 0., q_8 = 0., q_9 = 0., q_10 = 0.,  q_11 = 0., q_12 = 0., q_13 = 0.,  q_14 = 0., q_15 = 0., q_16 = 0., x = 0., y = 0.; //Tomas variables
   double e, nb, nq, ns, vx, vy, vz, t, mub, muq, mus, p;
-  cout << "initiated Momentum anizotropy computation as Maniz routine" << endl;
+  cout << "initiated Momentum Anizotropy computation as Maniz routine" << endl;
 //Space averaging of Q's
   //order n=1
   for (int ix = 2; ix < nx - 2; ix++)
@@ -725,6 +727,23 @@ void Fluid::outputManiz(double tau) {
     q_6 += ( vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order1 * phi );
     q_7 += ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) )  ) * cos( order3 * phi);
     q_8 += ( vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order3 * phi );
+
+    // Eccentricity definition by Niemi, m = 2, n = 2
+    q_9 +=  ( ix * ix + iy * iy + iz * iz ) * sin( 2 * phi) * e ;
+    q_10 += ( ix * ix + iy * iy + iz * iz ) * cos( 2 * phi) * e;
+
+    // Eccentricity definition by Niemi, m = 3, n = 2
+    q_11 +=  ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz )  * sin( 2 * phi) * e ;
+    q_12 += ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz )  * cos( 2 * phi) * e;
+
+    // Eccentricity definition by Niemi, m = 2, n = 3
+    q_13 +=  ( ix * ix + iy * iy + iz * iz ) * sin( 3 * phi) * e ;
+    q_14 += ( ix * ix + iy * iy + iz * iz ) * cos( 3 * phi) * e;
+
+    // Eccentricity definition by Niemi, m = 3, n = 3
+    q_15 +=  ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz )  * sin( 3 * phi) * e ;
+    q_16 += ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz )  * cos( 3 * phi) * e;
+
   }
 
 
@@ -738,6 +757,13 @@ void Fluid::outputManiz(double tau) {
   psi2 = atan2( q_4 , q_3 ); //Order 2 = 3
   psi3 = atan2( q_6 , q_5 ); //Order 1 = 2
   psi4 = atan2( q_8 , q_7 ); // Order 3 = 4
+
+//Eccentricity psis
+  psi5 = atan2( q_10 , q_9 )/2 + 3.1415/2;   //(m,n)=(2,2)
+  psi6 = atan2( q_12 , q_11 )/2 + 3.1415/2;   //(m,n)=(3,2)
+  psi7 = atan2( q_14 , q_13 )/3 + 3.1415/3;   //(m,n)=(2,3)
+  psi8 = atan2( q_16 , q_15 )/3 + 3.1415/3;   //(m,n)=(3,3)
+
 
 
 
@@ -888,12 +914,54 @@ if( abs(vz) < 0.5 ) {
   //Maniz(T0x - T0y) should be same as Maniz(3 - Iurii) m=0, n=2 [probe]
   eps_p_num20 +=  (  ( abs(vx)  - abs(vy) ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
   eps_p_den20 += (  ( abs(vx)  + abs(vy)  ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+
+  //Eccentricity definition Neimi (m,n)=(2,2)
+  eps_p_num21 += ( ( ix * ix + iy * iy + iz * iz ) * cos( 2 * (phi - psi5 ) ) * e );
+  eps_p_den21 += ( ( ix * ix + iy * iy + iz * iz ) * e);
+
+  //Eccentricity definition Neimi (m,n)=(3,2)
+  eps_p_num22 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * cos( 2 * ( phi - psi6 ) ) * e );
+  eps_p_den22 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e);
+
+  //Eccentricity definition Neimi (m,n)=(2,3)
+  eps_p_num23 += ( ( ix * ix + iy * iy + iz * iz ) * cos( 3 * (phi - psi7 ) ) * e );
+  eps_p_den23 += ( ( ix * ix + iy * iy + iz * iz ) * e);
+
+  //Eccentricity definition Neimi (m,n)=(3,3)
+  eps_p_num24 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * cos( 3 * (phi - psi8 ) ) * e );
+  eps_p_den24 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e);
+
+  //Eccentricity simple definition as in Huichao (m,n)=(2,2)
+  eps_p_num25 += ( ( ix * ix + iy * iy + iz * iz ) * e * cos( 2 * phi ) );
+  eps_p_den25 += ( ( ix * ix + iy * iy + iz * iz ) * e );
+
+  //Eccentricity simple definition as in Huichao (m,n)=(3,2)
+  eps_p_num26 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e * cos( 2 * phi ) );
+  eps_p_den26 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e );
+
+  //Eccentricity simple definition as in Huichao (m,n)=(2,3)
+  eps_p_num27 += ( ( ix * ix + iy * iy + iz * iz ) * e * cos( 3 * phi ) );
+  eps_p_den27 += ( ( ix * ix + iy * iy + iz * iz ) * e );
+
+  //Eccentricity simple definition as in Huichao (m,n)=(3,3)
+  eps_p_num28 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e * cos( 3 * phi ) );
+  eps_p_den28 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e );
+
+
+
+
+
+
 }
   }
 
 
-  output::maniz <<  setw(5) << tau << setw(18) << eps_p_num1/eps_p_den1 << setw(18) << eps_p_num2/eps_p_den2 << setw(18) << eps_p_num8/eps_p_den8 << setw(18) << eps_p_num4/eps_p_den4 << setw(18) << eps_p_num11/eps_p_den11 <<  setw(18) << eps_p_num12/eps_p_den12 <<  setw(18) << eps_p_num3/eps_p_den3 << setw(18) << eps_p_num5/eps_p_den5 << setw(18) << eps_p_num6/eps_p_den6 << setw(18) << eps_p_num7/eps_p_den7 << setw(18)
-   << eps_p_num9/eps_p_den9 << setw(18) << eps_p_num10/eps_p_den10 << setw(18) << eps_p_num13/eps_p_den13 << setw(18) << eps_p_num14/eps_p_den14 << setw(18) << eps_p_num15/eps_p_den15 << setw(18) << eps_p_num16/eps_p_den16 << setw(18) << eps_p_num17/eps_p_den17 << setw(18) << eps_p_num18/eps_p_den18 << setw(18) << eps_p_num19/eps_p_den19 << setw(18) << eps_p_num20/eps_p_den20  << endl;
+  output::maniz <<  setw(5) << tau << setw(18) << eps_p_num1/eps_p_den1 << setw(18) << eps_p_num2/eps_p_den2 << setw(18) << eps_p_num8/eps_p_den8 << setw(18) << eps_p_num4/eps_p_den4 << setw(18) <<
+   eps_p_num11/eps_p_den11 <<  setw(18) << eps_p_num12/eps_p_den12 <<  setw(18) << eps_p_num3/eps_p_den3 << setw(18) << eps_p_num5/eps_p_den5 << setw(18) << eps_p_num6/eps_p_den6 << setw(18) <<
+   eps_p_num7/eps_p_den7 << setw(18) << eps_p_num9/eps_p_den9 << setw(18) << eps_p_num10/eps_p_den10 << setw(18) << eps_p_num13/eps_p_den13 << setw(18) << eps_p_num14/eps_p_den14 << setw(18) << eps_p_num15/eps_p_den15 << setw(18) <<
+   eps_p_num16/eps_p_den16 << setw(18) << eps_p_num17/eps_p_den17 << setw(18) << eps_p_num18/eps_p_den18 << setw(18) << eps_p_num19/eps_p_den19 << setw(18) << eps_p_num20/eps_p_den20 << setw(18) <<
+   eps_p_num21/eps_p_den21 << setw(18) << eps_p_num22/eps_p_den22 << setw(18) << eps_p_num23/eps_p_den23 << setw(18) << eps_p_num24/eps_p_den24 << setw(18) << eps_p_num25/eps_p_den25 << setw(18) << eps_p_num26/eps_p_den26
+   << setw(18) << eps_p_num27/eps_p_den27 << setw(18) << eps_p_num28/eps_p_den28  << endl;
 }
 
 
