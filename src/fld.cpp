@@ -719,6 +719,8 @@ void Fluid::outputManiz(double tau) {
   q_1 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order1 * phi);
   q_2 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order1 * phi );
 
+
+  if( tau < 0.62 ){
   if( abs(vz) < 0.5 )
   {
     q_3 += ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order2 * phi);
@@ -745,7 +747,7 @@ void Fluid::outputManiz(double tau) {
     q_16 += ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz )  * cos( 3 * phi) * e;
 
   }
-
+}
 //cout << "just q_1" << setw(10) << q_1 << endl;
   //cout << (1. - vx * vx - vy * vy - vz*vz) << setw(10) << "gamma" << setw(10) << e << setw(10) << "energie" << setw(10) << (vx*vy*(e+p))  << setw(10) << "v_z" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << cos(order*phi) <<  setw(10) << sin(order*phi) << endl;
   }
