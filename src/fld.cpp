@@ -746,7 +746,6 @@ void Fluid::outputManiz(double tau) {
 
   }
 
-
 //cout << "just q_1" << setw(10) << q_1 << endl;
   //cout << (1. - vx * vx - vy * vy - vz*vz) << setw(10) << "gamma" << setw(10) << e << setw(10) << "energie" << setw(10) << (vx*vy*(e+p))  << setw(10) << "v_z" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << cos(order*phi) <<  setw(10) << sin(order*phi) << endl;
   }
@@ -758,12 +757,13 @@ void Fluid::outputManiz(double tau) {
   psi3 = atan2( q_6 , q_5 ); //Order 1 = 2
   psi4 = atan2( q_8 , q_7 ); // Order 3 = 4
 
-//Eccentricity psis
+  //Eccentricity psis
   psi5 = atan2( q_10 , q_9 )/2 + 3.1415/2;   //(m,n)=(2,2)
   psi6 = atan2( q_12 , q_11 )/2 + 3.1415/2;   //(m,n)=(3,2)
   psi7 = atan2( q_14 , q_13 )/3 + 3.1415/3;   //(m,n)=(2,3)
   psi8 = atan2( q_16 , q_15 )/3 + 3.1415/3;   //(m,n)=(3,3)
 
+  std::cout << psi5 << setw(15) << psi6 << setw(15) << psi7 << setw(15) << psi8 << setw(15)  '\n';
 
 
 
@@ -779,8 +779,8 @@ void Fluid::outputManiz(double tau) {
   phi = atan2( y , x );
   //cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
-//Midrap restrikce
-if( abs(vz) < 0.5 ) {
+  //Midrap restrikce
+  if( abs(vz) < 0.5 ) {
   //Maniz(1)[tj. T00 normalizace] m=0, n=2
   eps_p_num1 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
