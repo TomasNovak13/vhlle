@@ -763,7 +763,7 @@ void Fluid::outputManiz(double tau) {
   psi7 = atan2( q_14 , q_13 )/3 + 3.1415/3;   //(m,n)=(2,3)
   psi8 = atan2( q_16 , q_15 )/3 + 3.1415/3;   //(m,n)=(3,3)
 
-  std::cout << setw(15) << "Eccentricity psi's" << psi5 << setw(15) << psi6 << setw(15) << psi7 << setw(15) << psi8 << setw(15) << "Eccentricity psi's"  '\n';
+  std::cout << setw(15) << "Eccentricity psi's" << psi5 << setw(15) << psi6 << setw(15) << psi7 << setw(15) << psi8 << setw(15) << "Eccentricity psi's" +  '\n';
 
 
 
