@@ -787,6 +787,8 @@ void Fluid::outputManiz(double tau) {
 
   //Midrap restrikce
   if( abs(vz) < 0.5 ) {
+    if( tau < 0.62 ){
+
   //Maniz(1)[tj. T00 normalizace] m=0, n=2
   eps_p_num1 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
@@ -890,27 +892,27 @@ void Fluid::outputManiz(double tau) {
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( ix * ix + iy * iy + iz * iz );
 
   //Maniz(3 - Iurii) m=0, n=2
-  eps_p_num13 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order1 *  phi );
+  eps_p_num13 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order1 * (  phi - psi5 ));
   eps_p_den13 += (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(3 - Iurii) m=0, n=3
-  eps_p_num14 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order2 *  phi );
+  eps_p_num14 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order2 *  (  phi - psi7 ) );
   eps_p_den14 += (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(3 - Iurii) m=0, n=4
-  eps_p_num15 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order3 *  phi );
+  eps_p_num15 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order3 *  (  phi - psi9 ) );
   eps_p_den15 += (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(3 - Iurii) m=1, n=2
-  eps_p_num16 +=  ( sqrt( ix * ix + iy * iy + iz * iz ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order1 *  phi );
+  eps_p_num16 +=  ( sqrt( ix * ix + iy * iy + iz * iz ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order1 *  (  phi - psi5 ) );
   eps_p_den16 += (  sqrt( ix * ix + iy * iy + iz * iz ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(3 - Iurii) m=1, n=3
-  eps_p_num17 +=  ( sqrt( ix * ix + iy * iy + iz * iz ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order2 *  phi );
+  eps_p_num17 +=  ( sqrt( ix * ix + iy * iy + iz * iz ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order2 *  (  phi - psi7 ) );
   eps_p_den17 += ( sqrt( ix * ix + iy * iy + iz * iz ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(3 - Iurii) m=1, n=4
-  eps_p_num18 +=  ( sqrt( ix * ix + iy * iy + iz * iz ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order3 *  phi );
+  eps_p_num18 +=  ( sqrt( ix * ix + iy * iy + iz * iz ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order3 *  (  phi - psi9 ) );
   eps_p_den18 += ( sqrt( ix * ix + iy * iy + iz * iz ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(Txx - Tyy) should be same as Maniz(3 - Iurii) m=0, n=2 [probe]
@@ -920,7 +922,7 @@ void Fluid::outputManiz(double tau) {
   //Maniz(T0x - T0y) should be same as Maniz(3 - Iurii) m=0, n=2 [probe]
   eps_p_num20 +=  (  ( abs(vx)  - abs(vy) ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
   eps_p_den20 += (  ( abs(vx)  + abs(vy)  ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
-
+}
   //Eccentricity definition Neimi (m,n)=(2,2)
   eps_p_num21 += ( ( ix * ix + iy * iy + iz * iz ) * cos( 2 * (phi - psi5 ) ) * e );
   eps_p_den21 += ( ( ix * ix + iy * iy + iz * iz ) * e);
@@ -942,23 +944,23 @@ void Fluid::outputManiz(double tau) {
   eps_p_den29 += ( ( ix * ix + iy * iy + iz * iz ) * e);
 
   //Eccentricity simple definition as in Huichao (m,n)=(2,2)
-  eps_p_num25 += ( ( ix * ix + iy * iy + iz * iz ) * e * cos( 2 * phi ) );
+  eps_p_num25 += -( ( ix * ix + iy * iy + iz * iz ) * e * cos( 2 * (  phi - psi5 ) ) );
   eps_p_den25 += ( ( ix * ix + iy * iy + iz * iz ) * e );
 
   //Eccentricity simple definition as in Huichao (m,n)=(3,2)
-  eps_p_num26 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e * cos( 2 * phi ) );
+  eps_p_num26 += -( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e * cos( 2 * (  phi - psi5 ) ) );
   eps_p_den26 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e );
 
   //Eccentricity simple definition as in Huichao (m,n)=(2,3)
-  eps_p_num27 += ( ( ix * ix + iy * iy + iz * iz ) * e * cos( 3 * phi ) );
+  eps_p_num27 += -( ( ix * ix + iy * iy + iz * iz ) * e * cos( 3 * (  phi - psi7 ) ) );
   eps_p_den27 += ( ( ix * ix + iy * iy + iz * iz ) * e );
 
   //Eccentricity simple definition as in Huichao (m,n)=(3,3)
-  eps_p_num28 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e * cos( 3 * phi ) );
+  eps_p_num28 += -( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e * cos( 3 * (  phi - psi7 ) ) );
   eps_p_den28 += ( ( ix * ix + iy * iy + iz * iz ) * sqrt( ix * ix + iy * iy + iz * iz ) * e );
 
   //Eccentricity simple definition as in Huichao (m,n)=(2,4)
-  eps_p_num30 += ( ( ix * ix + iy * iy + iz * iz )  * e * cos( 4 * phi ) );
+  eps_p_num30 += -( ( ix * ix + iy * iy + iz * iz )  * e * cos( 4 * (  phi - psi9 ) ) );
   eps_p_den30 += ( ( ix * ix + iy * iy + iz * iz ) * e );
 
 }
