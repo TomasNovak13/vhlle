@@ -787,7 +787,6 @@ void Fluid::outputManiz(double tau) {
 
   //Midrap restrikce
   if( abs(vz) < 0.5 ) {
-    if( tau < 0.62 ){
 
   //Maniz(1)[tj. T00 normalizace] m=0, n=2
   eps_p_num1 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
@@ -922,7 +921,7 @@ void Fluid::outputManiz(double tau) {
   //Maniz(T0x - T0y) should be same as Maniz(3 - Iurii) m=0, n=2 [probe]
   eps_p_num20 +=  (  ( abs(vx)  - abs(vy) ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
   eps_p_den20 += (  ( abs(vx)  + abs(vy)  ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
-}
+
   //Eccentricity definition Neimi (m,n)=(2,2)
   eps_p_num21 += ( ( ix * ix + iy * iy + iz * iz ) * cos( 2 * (phi - psi5 ) ) * e );
   eps_p_den21 += ( ( ix * ix + iy * iy + iz * iz ) * e);
