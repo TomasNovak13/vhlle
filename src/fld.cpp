@@ -798,14 +798,14 @@ void Fluid::outputManiz(double tau) {
     ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
     (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( ix * ix + iy * iy + iz * iz ) *
     cos( 1 * ( phi - psi10 ) );
-    eps_p_den31 += ( ix * ix + iy * iy + iz * iz ) (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
+    eps_p_den31 += ( ix * ix + iy * iy + iz * iz ) * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
 
   //Maniz(1)[tj. T00 normalizace] m=2, n=2
   eps_p_num1 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( ix * ix + iy * iy + iz * iz ) *
   cos( order1 * ( phi - psi5 ) );
-  eps_p_den1 += ( ix * ix + iy * iy + iz * iz ) (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
+  eps_p_den1 += ( ix * ix + iy * iy + iz * iz ) * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
 
   //Maniz(1)[tj. T00 normalizace] m=2, n=3
 
