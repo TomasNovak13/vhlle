@@ -699,7 +699,7 @@ void Fluid::outputManiz(double tau) {
    eps_p_den18 = 0.,  eps_p_num19 = 0., eps_p_den19 = 0.,  eps_p_num20 = 0., eps_p_den20 = 0., eps_p_num21 = 0., eps_p_den21 = 0., eps_p_num22 = 0., eps_p_den22 = 0., eps_p_num23 = 0., eps_p_den23 = 0., eps_p_num24 = 0., eps_p_den24 = 0.,  eps_p_num25 = 0., eps_p_den25 = 0.,  eps_p_num26 = 0., eps_p_den26 = 0.,
      eps_p_num27 = 0., eps_p_den27 = 0.,  eps_p_num28 = 0., eps_p_den28 = 0.,   eps_p_num29 = 0., eps_p_den29 = 0.,  eps_p_num30 = 0., eps_p_den30 = 0.,   eps_p_num31 = 0., eps_p_den31 = 0., eps_p_num32 = 0., eps_p_den32 = 0.,  eps_p_num33 = 0., eps_p_den33 = 0.,  eps_p_num34 = 0., eps_p_den34 = 0.,  eps_p_num35 = 0., eps_p_den35 = 0.,
         psi1 = 0., psi2 = .0, psi3 = 0., psi4 = 0.,  psi5 = 0.,  psi6 = 0.,  psi7 = 0., psi8 = 0.,  psi9 = 0.,  psi10 = 0., phi = 0., order1 = 2., order2 = 3., order3 = 4.,
-        q_1 = 0., q_2 = 0., q_3 = 0., q_4 = 0., q_5 = 0., q_6 = 0., q_7 = 0., q_8 = 0., q_9 = 0., q_10 = 0.,  q_11 = 0., q_12 = 0., q_13 = 0.,  q_14 = 0., q_15 = 0., q_16 = 0., q_17 = 0. , q_18 = 0.,  q_19 = 0. , q_20 = 0., x = 0., y = 0.; //Tomas variables
+        q_1 = 0., q_2 = 0., q_3 = 0., q_4 = 0., q_5 = 0., q_6 = 0., q_7 = 0., q_8 = 0., q_9 = 0., q_10 = 0.,  q_11 = 0., q_12 = 0., q_13 = 0.,  q_14 = 0., q_15 = 0., q_16 = 0., q_17 = 0. , q_18 = 0.,  q_19 = 0. , q_20 = 0., x = 0., y = 0., z = 0.; //Tomas variables
   double e, nb, nq, ns, vx, vy, vz, t, mub, muq, mus, p;
   cout << "initiated Momentum Anizotropy computation as Maniz routine" << endl;
 //Space averaging of Q's
@@ -713,9 +713,9 @@ void Fluid::outputManiz(double tau) {
   getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
   eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
 // index T^{i1} i=1
-  double x = getX(ix) ;
-  double y = getY(iy) ;
-  double z = getZ(iz) ;
+  x = getX(ix) ;
+  y = getY(iy) ;
+  z = getZ(iz) ;
   phi = atan2( y , x );
   //cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
   // Unused! relict from no midrap restriction
@@ -787,9 +787,9 @@ void Fluid::outputManiz(double tau) {
         getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
         eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
   // index T^{i1} i=1 , [vz or as upwards tanh(vz)?]
-  double x = getX(ix) ;
-  double y = getY(iy) ;
-  double z = getZ(iz)
+  x = getX(ix) ;
+  y = getY(iy) ;
+  z = getZ(iz)
   phi = atan2( y , x );
   //cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
