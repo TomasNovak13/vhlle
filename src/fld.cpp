@@ -794,7 +794,7 @@ void Fluid::outputManiz(double tau) {
   //cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
   //Midrap restrikce
-  if( abs(vz) < 0.5 ) {
+  if( abs(z) < 0.5 ) {
 
     //Maniz(1)[tj. T00 normalizace] m=2, n=1
     eps_p_num31 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
