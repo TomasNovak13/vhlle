@@ -713,10 +713,9 @@ void Fluid::outputManiz(double tau) {
   getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
   eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
 // index T^{i1} i=1
-  x = getX(ix) ;
-  y = getY(iy) ;
-  z = getZ(iz) ;
-
+  double x = getX(ix) ;
+  double y = getY(iy) ;
+  double z = getZ(iz) ;
   phi = atan2( y , x );
   //cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
   // Unused! relict from no midrap restriction
@@ -788,9 +787,9 @@ void Fluid::outputManiz(double tau) {
         getCMFvariables(c, tau, e, nb, nq, ns, vx, vy, vz);
         eos->eos(e, nb, nq, ns, t, mub, muq, mus, p);
   // index T^{i1} i=1 , [vz or as upwards tanh(vz)?]
-  x = getX(ix) ;
-  y = getY(iy) ;
-  z = getZ(iz)
+  double x = getX(ix) ;
+  double y = getY(iy) ;
+  double z = getZ(iz)
   phi = atan2( y , x );
   //cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
