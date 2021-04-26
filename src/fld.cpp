@@ -789,7 +789,7 @@ void Fluid::outputManiz(double tau) {
   // index T^{i1} i=1 , [vz or as upwards tanh(vz)?]
   x = getX(ix) ;
   y = getY(iy) ;
-  z = getZ(iz)
+  z = getZ(iz) ;
   phi = atan2( y , x );
   //cout << "this is phi"  <<  setw(10) << phi << "this is psi"  <<  setw(10) << psi << endl;
 
