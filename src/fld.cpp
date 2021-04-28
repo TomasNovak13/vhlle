@@ -808,8 +808,7 @@ void Fluid::outputManiz(double tau) {
     eps_p_num31 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
     ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
     (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( x * x + y * y  ) *
-    cos( 1 * ( phi - p
-      si10 ) );
+    cos( 1 * ( phi - psi10 ) );
     eps_p_den31 += ( x * x + y * y  ) * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
 
   //Maniz(1)[tj. T00 normalizace] m=2, n=2
