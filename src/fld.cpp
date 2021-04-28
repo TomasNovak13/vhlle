@@ -698,14 +698,16 @@ void Fluid::outputManiz(double tau) {
    eps_p_num10 = 0., eps_p_den10 = 0.,  eps_p_num11 = 0., eps_p_den11 = 0.,  eps_p_num12 = 0., eps_p_den12 = 0.,  eps_p_num13 = 0., eps_p_den13 = 0.,  eps_p_num14 = 0., eps_p_den14 = 0.,  eps_p_num15 = 0., eps_p_den15 = 0.,  eps_p_num16 = 0., eps_p_den16 = 0.,   eps_p_num17 = 0., eps_p_den17 = 0., eps_p_num18 = 0.,
    eps_p_den18 = 0.,  eps_p_num19 = 0., eps_p_den19 = 0.,  eps_p_num20 = 0., eps_p_den20 = 0., eps_p_num21 = 0., eps_p_den21 = 0., eps_p_num22 = 0., eps_p_den22 = 0., eps_p_num23 = 0., eps_p_den23 = 0., eps_p_num24 = 0., eps_p_den24 = 0.,  eps_p_num25 = 0., eps_p_den25 = 0.,  eps_p_num26 = 0., eps_p_den26 = 0.,
      eps_p_num27 = 0., eps_p_den27 = 0.,  eps_p_num28 = 0., eps_p_den28 = 0.,   eps_p_num29 = 0., eps_p_den29 = 0.,  eps_p_num30 = 0., eps_p_den30 = 0.,   eps_p_num31 = 0., eps_p_den31 = 0., eps_p_num32 = 0., eps_p_den32 = 0.,  eps_p_num33 = 0., eps_p_den33 = 0.,  eps_p_num34 = 0., eps_p_den34 = 0.,  eps_p_num35 = 0., eps_p_den35 = 0.,
-        psi1 = 0., psi2 = .0, psi3 = 0., psi4 = 0.,  psi5 = 0.,  psi6 = 0.,  psi7 = 0., psi8 = 0.,  psi9 = 0.,  psi10 = 0., phi = 0., order1 = 2., order2 = 3., order3 = 4.,
+        psi1 = 0., psi2 = .0, psi3 = 0., psi4 = 0.,  psi5 = 0.,  psi6 = 0.,  psi7 = 0., psi8 = 0.,  psi9 = 0.,  psi10 = 0., phi = 0., order1 = 2., order2 = 3., order3 = 4., k = 0.;
         q_1 = 0., q_2 = 0., q_3 = 0., q_4 = 0., q_5 = 0., q_6 = 0., q_7 = 0., q_8 = 0., q_9 = 0., q_10 = 0.,  q_11 = 0., q_12 = 0., q_13 = 0.,  q_14 = 0., q_15 = 0., q_16 = 0., q_17 = 0. , q_18 = 0.,  q_19 = 0. , q_20 = 0., x = 0., y = 0., z = 0.; //Tomas variables
   double e, nb, nq, ns, vx, vy, vz, t, mub, muq, mus, p;
-  cout << "initiated Momentum Anizotropy computation as Maniz routine" << endl;
-//Space averaging of Q's
-  //order n=1
-  if( tau < 0.62 ){
 
+  cout << "initiated Momentum Anizotropy computation as Maniz routine" << endl;
+
+  //Control parameter for just once initialisation of PhaseFactor Psi computation.
+  if( k < 0.5 ){
+
+  //Space averaging of Q's
   for (int ix = 2; ix < nx - 2; ix++)
    for (int iy = 2; iy < ny - 2; iy++)
     for (int iz = 2; iz < nz - 2; iz++) {
@@ -718,10 +720,16 @@ void Fluid::outputManiz(double tau) {
   z = getZ(iz) ;
   phi = atan2( y , x );
   //cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
-  // Unused! relict from no midrap restriction
+  // Unused! relict from no midrap restriction.
+
+  //Control parameter for just once initialisation.
+  k = 1.;
+
+
   q_1 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order1 * phi);
   q_2 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order1 * phi );
 
+  if( tau < 0.75 ){
 
   if( abs(z) < 0.5 )
   {
@@ -778,7 +786,7 @@ void Fluid::outputManiz(double tau) {
 
    std::cout << setw(15) << "Eccentricity psi's" << setw(15) << tau << setw(15) << psi5 << setw(15) << psi6 << setw(15) << psi7 << setw(15) << psi8 << setw(15) << "Eccentricity psi's" +  '\n';
 
-
+}
 
     for (int ix = 2; ix < nx - 2; ix++)
      for (int iy = 2; iy < ny - 2; iy++)
@@ -800,7 +808,8 @@ void Fluid::outputManiz(double tau) {
     eps_p_num31 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
     ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
     (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( x * x + y * y  ) *
-    cos( 1 * ( phi - psi10 ) );
+    cos( 1 * ( phi - p
+      si10 ) );
     eps_p_den31 += ( x * x + y * y  ) * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
 
   //Maniz(1)[tj. T00 normalizace] m=2, n=2
@@ -843,7 +852,7 @@ void Fluid::outputManiz(double tau) {
   cos( order1 * ( phi - psi5 ) );
   eps_p_den4 += ( ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p ) * sqrt( x * x + y * y  );
 
-  //Maniz(1)*r^2 [tj. T00*r^2 normalizace] m=1, n=2
+  //Maniz(1)*r^2 [tj. T00*r^2 normalizace] m=1, n=3
   eps_p_num11 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  ) *
@@ -953,7 +962,7 @@ void Fluid::outputManiz(double tau) {
   eps_p_num34 += ( ( x * x + y * y  ) * cos( 1 * (phi - psi10 ) ) * e );
   eps_p_den34 += ( ( x * x + y * y  ) * e);
 
-  //Eccentricity definition Neimi (m,n)=(2,2)
+  //Eccentricity definition Neimi (m,n)=(2,2) 26 ve vypisu
   eps_p_num21 += ( ( x * x + y * y  ) * cos( 2 * (phi - psi5 ) ) * e );
   eps_p_den21 += ( ( x * x + y * y  ) * e);
 
@@ -961,7 +970,7 @@ void Fluid::outputManiz(double tau) {
   eps_p_num22 += ( ( x * x + y * y  ) * sqrt( x * x + y * y  ) * cos( 2 * ( phi - psi6 ) ) * e );
   eps_p_den22 += ( ( x * x + y * y  ) * sqrt( x * x + y * y  ) * e);
 
-  //Eccentricity definition Neimi (m,n)=(2,3)
+  //Eccentricity definition Neimi (m,n)=(2,3) 28 ve vypisu
   eps_p_num23 += ( ( x * x + y * y  ) * cos( 3 * (phi - psi7 ) ) * e );
   eps_p_den23 += ( ( x * x + y * y  ) * e);
 
