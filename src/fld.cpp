@@ -1011,7 +1011,7 @@ void Fluid::outputManiz(double tau) {
    eps_p_num7/eps_p_den7 << setw(18) << eps_p_num9/eps_p_den9 << setw(18) << eps_p_num10/eps_p_den10 << setw(18) << eps_p_num33/eps_p_den33  << setw(18) << eps_p_num13/eps_p_den13 << setw(18) << eps_p_num14/eps_p_den14 << setw(18) << eps_p_num15/eps_p_den15 << setw(18) <<
    eps_p_num16/eps_p_den16 << setw(18) << eps_p_num17/eps_p_den17 << setw(18) << eps_p_num18/eps_p_den18 << setw(18) << eps_p_num19/eps_p_den19 << setw(18) << eps_p_num20/eps_p_den20 << setw(18) << eps_p_num34/eps_p_den34  << setw(18) <<
    eps_p_num21/eps_p_den21 << setw(18) << eps_p_num22/eps_p_den22 << setw(18) << eps_p_num23/eps_p_den23 << setw(18) << eps_p_num24/eps_p_den24 <<  setw(18) << eps_p_num29/eps_p_den29 << setw(18) << eps_p_num35/eps_p_den35  << setw(18) << eps_p_num25/eps_p_den25 << setw(18) << eps_p_num26/eps_p_den26
-   << setw(18) << eps_p_num27/eps_p_den27 << setw(18) << eps_p_num28/eps_p_den28  << setw(18) << eps_p_num30/eps_p_den30 << endl;
+   << setw(18) << eps_p_num27/eps_p_den27 << setw(18) << eps_p_num28/eps_p_den28  << setw(18) << eps_p_num30/eps_p_den30 << setw(18) << psi10 << setw(18) << psi5 << setw(18) << psi7 << setw(18) << psi9 << endl;
 }
 
 
