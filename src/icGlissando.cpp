@@ -15,6 +15,14 @@
 
 using namespace std;
 
+namespace output{  // a namespace containing all the output streams
+  ofstream partn
+}
+
+string outpartn = dir;
+outpartn.append("/out.partn.dat");
+output::partn.open(outpartn.c_str());
+
 IcGlissando::IcGlissando(Fluid* f, const char* filename, double _tau0, const char* setup) {
  cout << "loading GLISSANDO IC\n";
  nx = f->getNX();
@@ -31,7 +39,7 @@ IcGlissando::IcGlissando(Fluid* f, const char* filename, double _tau0, const cha
  zmax = f->getZ(nz - 1);
 
  tau0 = _tau0;
- 
+
  if(strcmp(setup,"LHC276")==0) {
   sNN = 2760;
   eta0 = 2.3; // midrapidity plateau
@@ -103,6 +111,8 @@ IcGlissando::IcGlissando(Fluid* f, const char* filename, double _tau0, const cha
   exit(0);
  }
 
+
+
  nsmoothx = (int)(3.0 * Rg / dx);  // smoothly distribute to +- this many cells
  nsmoothy = nsmoothx;
 
@@ -150,7 +160,11 @@ IcGlissando::IcGlissando(Fluid* f, const char* filename, double _tau0, const cha
    if (nevents % 1 == 0) {
     cout << "event = " << nevents << "  np = " << np << "\n";
     //cout << flush;
+    output::partn <<  setw(5) << np << setw(15) << np_tot << endl;
+
    }
+   output::partn <<  setw(5) << np << setw(15) << np_tot << endl;
+
    makeSmoothTable(np);
    np_tot += np;
    np = 0;
@@ -161,6 +175,7 @@ IcGlissando::IcGlissando(Fluid* f, const char* filename, double _tau0, const cha
  }
  if (nevents > 1)
   cout << "IcGlissando: loaded " << nevents << "  initial UrQMD events\n";
+  output::partn <<  setw(5) << np << setw(15) << np_tot << endl;
 
  // autocalculation of sNorm and nNorm
  sNorm = 1.0;
@@ -180,6 +195,8 @@ IcGlissando::IcGlissando(Fluid* f, const char* filename, double _tau0, const cha
   cout << "nNorm set to " << nNorm << endl;
  }
 }
+output::partn <<  setw(5) << np << setw(15) << np_tot << endl;
+
 
 IcGlissando::~IcGlissando() {
  for (int ix = 0; ix < nx; ix++) {
@@ -320,6 +337,7 @@ void IcGlissando::setIC(Fluid* f, EoS* eos) {
  cout << "1/tau*dJ/dy_ini: " << Jy0_midrap/(3.0*dz*tau0) << endl;
  //exit(1);
 }
+output::partn <<  setw(5) << np << setw(15) << np_tot << endl;
 
 double IcGlissando::setNormalization(int npart) {
  double e;
