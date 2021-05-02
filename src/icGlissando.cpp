@@ -248,10 +248,6 @@ void IcGlissando::makeSmoothTable(int npart) {
       }
      } // Z(eta) loop
     }
-
-    cout << "*****Number of participants:" << np << endl;
-    cout << "*****Number of participants:" << np << endl;
-    cout << "*****Number of participants:" << np << endl;
  }  // end particle loop
 }
 
@@ -328,9 +324,7 @@ void IcGlissando::setIC(Fluid* f, EoS* eos) {
  cout << "1/tau*dE/dy_ini: : " << E_midrap/(3.0*dz*tau0) << endl;
  cout << "1/tau*dJ/dy_ini: " << Jy0_midrap/(3.0*dz*tau0) << endl;
  //exit(1);
- cout << "*****Number of participants:" << np << endl;
- cout << "*****Number of participants:" << np << endl;
- cout << "*****Number of participants:" << np << endl;
+ 
 }
 
 
