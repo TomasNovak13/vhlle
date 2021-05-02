@@ -32,14 +32,6 @@ private:
  int nsmoothz;
  void makeSmoothTable(int npart);
 
- void initOutput(const char *dir, double tau0);
- int output_xy_spacing;
- int output_eta_points;
- int output_tau_spacing;
- int output_eta_spacing;
-
- int output_nt, output_nx, output_ny;
-
 public:
  IcGlissando(Fluid *f, const char *filename, double tau0, const char* setup);
  ~IcGlissando();
