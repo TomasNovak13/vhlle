@@ -184,7 +184,6 @@ IcGlissando::IcGlissando(Fluid* f, const char* filename, double _tau0, const cha
   cout << "nNorm set to " << nNorm << endl;
  }
 }
-cout << "*****Number of participants:" << np << endl;
 
 IcGlissando::~IcGlissando() {
  for (int ix = 0; ix < nx; ix++) {
@@ -249,11 +248,13 @@ void IcGlissando::makeSmoothTable(int npart) {
       }
      } // Z(eta) loop
     }
+
+    cout << "*****Number of participants:" << np << endl;
+    cout << "*****Number of participants:" << np << endl;
+    cout << "*****Number of participants:" << np << endl;
  }  // end particle loop
 }
-cout << "*****Number of participants:" << np << endl;
-cout << "*****Number of participants:" << np << endl;
-cout << "*****Number of participants:" << np << endl;
+
 
 void IcGlissando::setIC(Fluid* f, EoS* eos) {
  double E = 0.0, Px = 0.0, Py = 0.0, Pz = 0.0, Nb = 0.0, S = 0.0;
@@ -327,10 +328,11 @@ void IcGlissando::setIC(Fluid* f, EoS* eos) {
  cout << "1/tau*dE/dy_ini: : " << E_midrap/(3.0*dz*tau0) << endl;
  cout << "1/tau*dJ/dy_ini: " << Jy0_midrap/(3.0*dz*tau0) << endl;
  //exit(1);
+ cout << "*****Number of participants:" << np << endl;
+ cout << "*****Number of participants:" << np << endl;
+ cout << "*****Number of participants:" << np << endl;
 }
-cout << "*****Number of participants:" << np << endl;
-cout << "*****Number of participants:" << np << endl;
-cout << "*****Number of participants:" << np << endl;
+
 
 double IcGlissando::setNormalization(int npart) {
  double e;
@@ -345,8 +347,6 @@ double IcGlissando::setNormalization(int npart) {
    }
  return npart*0.5*sNN/total_energy;
 }
-cout << "*****Number of participants:" << np << endl;
-cout << "*****Number of participants:" << np << endl;
 
 double IcGlissando::setBaryonNorm(int npart) {
  double Nb = 0.0;
