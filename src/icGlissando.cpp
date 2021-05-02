@@ -148,7 +148,7 @@ IcGlissando::IcGlissando(Fluid* f, const char* filename, double _tau0, const cha
    // cout<<"readF14:instream: failure reading data\n" ;
    // cout<<"stream = "<<instream.str()<<endl ;
    if (nevents % 1 == 0) {
-    cout << "event = " << nevents << "  np = " << np << "\n";
+    cout << "eventtt = " << nevents << "  np = " << np << "\n";
     //cout << flush;
     cout << "*****Number of participants:" << np << endl;
     cout << "*****Number of participants:" << np << endl;
