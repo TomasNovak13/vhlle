@@ -32,6 +32,9 @@ private:
  int nsmoothz;
  void makeSmoothTable(int npart);
 
+ void initOutput(const char *dir, double tau0);
+
+
 public:
  IcGlissando(Fluid *f, const char *filename, double tau0, const char* setup);
  ~IcGlissando();

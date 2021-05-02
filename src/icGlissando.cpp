@@ -19,9 +19,15 @@ namespace output{  // a namespace containing all the output streams
   ofstream partn
 }
 
+void IcGlissando::initOutput(const char *dir, double tau0) {
+char command[255];
+sprintf(command, "mkdir -p %s", dir);
+int return_mkdir = system(command);
+cout << "mkdir returns: " << return_mkdir << endl;
 string outpartn = dir;
 outpartn.append("/out.partn.dat");
 output::partn.open(outpartn.c_str());
+}
 
 IcGlissando::IcGlissando(Fluid* f, const char* filename, double _tau0, const char* setup) {
  cout << "loading GLISSANDO IC\n";
