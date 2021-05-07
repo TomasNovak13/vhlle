@@ -802,157 +802,157 @@ void Fluid::outputManiz(double tau) {
   if( abs(z) < 0.5 ) {
 
     //Maniz(1)[tj. T00 normalizace] m=2, n=1
-    eps_p_num31 += e * ( sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+    eps_p_num31 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
     ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
     (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( x * x + y * y  ) *
-    cos( 1 * ( phi - psi10 ) ) );
-    eps_p_den31 += e * ( x * x + y * y  ) * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
+    cos( 1 * ( phi - psi10 ) ) ;
+    eps_p_den31 += ( x * x + y * y  ) * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
 
   //Maniz(1)[tj. T00 normalizace] m=2, n=2
-  eps_p_num1 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num1 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( x * x + y * y  ) *
-  cos( order1 * ( phi - psi5 ) ) );
-  eps_p_den1 += e * ( x * x + y * y  ) * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
+  cos( order1 * ( phi - psi5 ) );
+  eps_p_den1 += ( x * x + y * y  ) * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p);
 
   //Maniz(1)[tj. T00 normalizace] m=2, n=3
 
-  eps_p_num2 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num2 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( x * x + y * y  ) *
-  cos( order2 * ( phi - psi7 ) ));
-  eps_p_den2 += e * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p) * ( x * x + y * y  );
+  cos( order2 * ( phi - psi7 ) );
+  eps_p_den2 += (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p) * ( x * x + y * y  );
 
   //Maniz(1)[tj. T00 normalizace] m=2, n=4
-  eps_p_num8  += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num8  += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( x * x + y * y  ) *
-  cos( order3 * ( phi - psi9 ) ));
-  eps_p_den8 += e * (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p) * ( x * x + y * y  );
+  cos( order3 * ( phi - psi9 ) );
+  eps_p_den8 += (( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p) * ( x * x + y * y  );
 
   //Maniz(2)[tj. T10^2+T02^2 normalizace] m=2, n=2
 
-  eps_p_num3 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num3 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( x * x + y * y  ) *
-  cos( order1 * ( phi - psi5 ) ));
-  eps_p_den3 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  cos( order1 * ( phi - psi5 ) );
+  eps_p_den3 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
-  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( x * x + y * y  ));
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * ( x * x + y * y  );
 
 
   //Maniz(1)*r^2 [tj. T00*r^2 normalizace] m=1, n=2
-  eps_p_num4 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num4 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  ) *
-  cos( order1 * ( phi - psi5 ) ));
-  eps_p_den4 += e * ( ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p ) * sqrt( x * x + y * y  );
+  cos( order1 * ( phi - psi5 ) );
+  eps_p_den4 += ( ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p ) * sqrt( x * x + y * y  );
 
   //Maniz(1)*r^2 [tj. T00*r^2 normalizace] m=1, n=3
-  eps_p_num11 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num11 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  ) *
-  cos( order2 * ( phi - psi7 ) ));
-  eps_p_den11 += e * ( ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p ) * sqrt( x * x + y * y  );
+  cos( order2 * ( phi - psi7 ) );
+  eps_p_den11 += ( ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p ) * sqrt( x * x + y * y  );
 
   //Maniz(1)*r^2 [tj. T00*r^2 normalizace] m=1, n=4
-  eps_p_num12 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num12 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  ) *
-  cos( order3 * ( phi - psi9 ) ));
-  eps_p_den12 += e * ( ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p ) * sqrt( x * x + y * y  ) ;
+  cos( order3 * ( phi - psi9 ) );
+  eps_p_den12 += ( ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) - p ) * sqrt( x * x + y * y  ) ;
 
   //Maniz(2)[tj. T10^2+T02^2 normalizace] m=2, n=3
 
-  eps_p_num5 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num5 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
-  ( x * x + y * y  ) * cos( order2 * ( phi - psi7 ) ));
-  eps_p_den5 += e * (( x * x + y * y  ) * sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  ( x * x + y * y  ) * cos( order2 * ( phi - psi7 ) );
+  eps_p_den5 += ( x * x + y * y  ) * sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
-  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ));
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) );
 
   //Maniz(2)[tj. T10^2+T02^2 normalizace] m=2, n=4
-  eps_p_num6 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num6 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
-  ( x * x + y * y  ) * cos( order3 * ( phi - psi9 ) ) );
-  eps_p_den6 += e * (( x * x + y * y  ) * sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  ( x * x + y * y  ) * cos( order3 * ( phi - psi9 ) );
+  eps_p_den6 += ( x * x + y * y  ) * sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
-  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) );
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) );
 
   //Maniz(2)[tj. T10^2+T02^2 normalizace] m=2, n=1
-  eps_p_num32 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num32 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
-  ( x * x + y * y  ) * cos( 1 * ( phi - psi10 ) ));
-  eps_p_den32 += e * (( x * x + y * y  ) * sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  ( x * x + y * y  ) * cos( 1 * ( phi - psi10 ) );
+  eps_p_den32 += ( x * x + y * y  ) * sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
-  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) );
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) );
 
 
   //Maniz(2)[tj. T10^2+T02^2 normalizace] m=1, n=2
-  eps_p_num7 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num7 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
-  sqrt( x * x + y * y  ) * cos( order1 * ( phi - psi5 ) ) );
-  eps_p_den7 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  sqrt( x * x + y * y  ) * cos( order1 * ( phi - psi5 ) );
+  eps_p_den7 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
-  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  ));
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  );
 
   //Maniz(2)[tj. T10^2+T02^2 normalizace] m=1, n=3
-  eps_p_num9 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num9 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
-  sqrt( x * x + y * y  ) * cos( order2 * ( phi - psi7 ) ) );
-  eps_p_den9 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  sqrt( x * x + y * y  ) * cos( order2 * ( phi - psi7 ) );
+  eps_p_den9 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
-  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  ) );
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  );
 
   //Maniz(2)[tj. T10^2+T02^2 normalizace] m=1, n=4
-  eps_p_num10 += e * (sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  eps_p_num10 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
   (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) *
-  sqrt( x * x + y * y  ) * cos( order3 * ( phi - psi9 ) ) );
-  eps_p_den10 +=  e * ( sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
+  sqrt( x * x + y * y  ) * cos( order3 * ( phi - psi9 ) );
+  eps_p_den10 += sqrt( ( vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) *
   ( vx *( e + p )/(1. - vx * vx - vy * vy - tanh(vz) * tanh(vz))) + ( vy * ( e + p )/
-  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  ));
+  (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * ( vy * ( e + p ) / (1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) ) * sqrt( x * x + y * y  );
 
   //Maniz(3 - Iurii) m=2, n=1
-  eps_p_num13 +=  e * (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  ) * cos( 1 * (  phi - psi10 ));
-  eps_p_den13 += e * (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  );
+  eps_p_num13 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  ) * cos( 1 * (  phi - psi10 ));
+  eps_p_den13 += (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  );
 
   //Maniz(3 - Iurii) m=2, n=2
-  eps_p_num13 +=  e * (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  ) * cos( order1 * (  phi - psi5 ));
-  eps_p_den13 += e * (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  );
+  eps_p_num13 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  ) * cos( order1 * (  phi - psi5 ));
+  eps_p_den13 += (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  );
 
   //Maniz(3 - Iurii) m=2, n=3
-  eps_p_num14 += e * (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  ) * cos( order2 *  (  phi - psi7 ) );
-  eps_p_den14 += e * (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  );
+  eps_p_num14 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  ) * cos( order2 *  (  phi - psi7 ) );
+  eps_p_den14 += (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  );
 
   //Maniz(3 - Iurii) m=2, n=4
-  eps_p_num15 +=  e * (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  ) * cos( order3 *  (  phi - psi9 ) );
-  eps_p_den15 += e * (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  );
+  eps_p_num15 +=  (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  ) * cos( order3 *  (  phi - psi9 ) );
+  eps_p_den15 += (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * ( x * x + y * y  );
 
   //Maniz(3 - Iurii) m=1, n=2
-  eps_p_num16 +=  e * ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order1 *  (  phi - psi5 ) );
-  eps_p_den16 += e * (  sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+  eps_p_num16 +=  ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order1 *  (  phi - psi5 ) );
+  eps_p_den16 += (  sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(3 - Iurii) m=1, n=3
-  eps_p_num17 +=  e * ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order2 *  (  phi - psi7 ) );
-  eps_p_den17 += e * ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+  eps_p_num17 +=  ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order2 *  (  phi - psi7 ) );
+  eps_p_den17 += ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(3 - Iurii) m=1, n=4
-  eps_p_num18 += e * ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order3 *  (  phi - psi9 ) );
-  eps_p_den18 += e * ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+  eps_p_num18 +=  ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) ) * cos( order3 *  (  phi - psi9 ) );
+  eps_p_den18 += ( sqrt( x * x + y * y  ) * ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(Txx - Tyy) should be same as Maniz(3 - Iurii) m=0, n=2 [probe]
-  eps_p_num19 += e * (  ( vx * vx - vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
-  eps_p_den19 += e * (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+  eps_p_num19 +=  (  ( vx * vx - vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+  eps_p_den19 += (  ( vx * vx + vy * vy ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Maniz(T0x - T0y) should be same as Maniz(3 - Iurii) m=0, n=2 [probe]
-  eps_p_num20 +=  e * (  ( abs(vx)  - abs(vy) ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
-  eps_p_den20 += e * (  ( abs(vx)  + abs(vy)  ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+  eps_p_num20 +=  (  ( abs(vx)  - abs(vy) ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
+  eps_p_den20 += (  ( abs(vx)  + abs(vy)  ) * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) );
 
   //Eccentricity definition Neimi (m,n)=(2,1)
   eps_p_num34 += ( ( x * x + y * y  ) * cos( 1 * (phi - psi10 ) ) * e );
