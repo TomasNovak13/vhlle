@@ -5,6 +5,7 @@ private:
  EoSaux *eossmall, *eosbig;
 
 public:
+  double psi1, psi2, psi3, psi4, psi5, psi6, psi7, psi8, psi9, psi10;
  EoSChiral(void);
  ~EoSChiral(void);
 
