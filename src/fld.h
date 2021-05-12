@@ -66,6 +66,6 @@ public:
  void outputGnuplot(double tau);
  void outputSurface(double tau);
  void outputCorona(double tau);
- void outputManiz(double tau);
+ void outputManiz(double tau, double psi1, double psi2, double psi3, double psi4, double psi5, double psi6, double psi7, double psi8, double psi9, double psi10);
  void InitialAnisotropies(double tau0);
 };
