@@ -704,7 +704,6 @@ void Fluid::outputManiz(double tau) {
 
   cout << "initiated Momentum Anizotropy computation as Maniz routine" << endl;
 
-  //Control parameter for just once initialisation of PhaseFactor Psi computation.
 
   //Space averaging of Q's
   for (int ix = 2; ix < nx - 2; ix++)
@@ -719,7 +718,6 @@ void Fluid::outputManiz(double tau) {
   z = getZ(iz) ;
   phi = atan2( y , x );
   //cout << phi << setw(10) << "phi" << q_1 << setw(10) << "q_1" << endl;
-  // Unused! relict from no midrap restriction.
 
 
 
@@ -727,7 +725,7 @@ void Fluid::outputManiz(double tau) {
   q_1 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order1 * phi);
   q_2 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order1 * phi );
 
-  if( tau < 0.63 ){
+  if( tau < 2 ){
 
   if( abs(z) < 0.5 )
   {
