@@ -39,7 +39,6 @@
 #include "trancoeff.h"
 
 using namespace std;
-double psi1, psi2, psi3, psi4, psi5, psi6, psi7, psi8, psi9, psi10;
 
 // program parameters, to be read from file
 int nx, ny, nz, eosType;
@@ -286,7 +285,7 @@ int main(int argc, char **argv) {
 
  f->initOutput(outputDir.c_str(), tau0);
  f->outputCorona(tau0);
- f->outputManiz(tau0, psi1, psi2, psi3, psi4, psi5, psi6, psi7, psi8, psi9, psi10);
+ f->outputManiz(tau0);
 
 
  bool resized = false; // flag if the grid has been resized
@@ -308,7 +307,7 @@ int main(int argc, char **argv) {
    h->performStep();
   f->outputGnuplot(h->getTau());
   f->outputSurface(h->getTau());
-  f->outputManiz(h->getTau(),h->getPsi());
+  f->outputManiz(h->getTau());
 
   if(h->getTau()>=tauResize and resized==false) {
    cout << "grid resize\n";
