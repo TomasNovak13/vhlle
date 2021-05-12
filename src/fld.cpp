@@ -726,7 +726,7 @@ void Fluid::outputManiz(double tau) {
   q_1 += ( vx * vx * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz) ) + p ) * cos( order1 * phi);
   q_2 += ( vx * vy * ( e + p ) / ( 1. - vx * vx - vy * vy - tanh(vz) * tanh(vz)) ) * sin( order1 * phi );
 
-  if( tau < 2 ){
+  if( tau < 0.8 ){
 
   if( abs(z) < 0.5 )
   {
