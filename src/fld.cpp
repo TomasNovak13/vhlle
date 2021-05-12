@@ -693,7 +693,7 @@ void Fluid::outputSurface(double tau) {
  if (nelements == 0) exit(0);
 }
 
-void Fluid::outputManiz(double tau) {
+void Fluid::outputManiz(double tau, double psi1, double psi2, double psi3, double double psi4, double psi5, double psi6, double psi7, double psi8, double psi9, double psi10) {
   double eps_p_num1 = 0., eps_p_den1 = 0., eps_p_num2 = 0., eps_p_den2 = 0., eps_p_num3 = 0., eps_p_den3 = 0., eps_p_num4 = 0., eps_p_den4 = 0., eps_p_num5 = 0., eps_p_den5 = 0., eps_p_num6 = 0., eps_p_den6 = 0., eps_p_num7 = 0., eps_p_den7 = 0., eps_p_num8 = 0., eps_p_den8 = 0., eps_p_num9 = 0., eps_p_den9 = 0.,
    eps_p_num10 = 0., eps_p_den10 = 0.,  eps_p_num11 = 0., eps_p_den11 = 0.,  eps_p_num12 = 0., eps_p_den12 = 0.,  eps_p_num13 = 0., eps_p_den13 = 0.,  eps_p_num14 = 0., eps_p_den14 = 0.,  eps_p_num15 = 0., eps_p_den15 = 0.,  eps_p_num16 = 0., eps_p_den16 = 0.,   eps_p_num17 = 0., eps_p_den17 = 0., eps_p_num18 = 0.,
    eps_p_den18 = 0.,  eps_p_num19 = 0., eps_p_den19 = 0.,  eps_p_num20 = 0., eps_p_den20 = 0., eps_p_num21 = 0., eps_p_den21 = 0., eps_p_num22 = 0., eps_p_den22 = 0., eps_p_num23 = 0., eps_p_den23 = 0., eps_p_num24 = 0., eps_p_den24 = 0.,  eps_p_num25 = 0., eps_p_den25 = 0.,  eps_p_num26 = 0., eps_p_den26 = 0.,
