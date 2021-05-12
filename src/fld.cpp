@@ -36,6 +36,7 @@
 
 using namespace std;
 
+double psi1, psi2, psi3, psi4, psi5, psi6, psi7, psi8, psi9, psi10;
 namespace output{  // a namespace containing all the output streams
   ofstream fkw, fkw_dim, fxvisc, fyvisc, fdiagvisc, fx,
      fy, fdiag, fz, faniz, f2d, ffreeze, maniz;
@@ -701,7 +702,6 @@ void Fluid::outputManiz(double tau) {
          phi = 0., order1 = 2., order2 = 3., order3 = 4.,
         q_1 = 0., q_2 = 0., q_3 = 0., q_4 = 0., q_5 = 0., q_6 = 0., q_7 = 0., q_8 = 0., q_9 = 0., q_10 = 0.,  q_11 = 0., q_12 = 0., q_13 = 0.,  q_14 = 0., q_15 = 0., q_16 = 0., q_17 = 0. , q_18 = 0.,  q_19 = 0. , q_20 = 0., x = 0., y = 0., z = 0.; //Tomas variables
   double e, nb, nq, ns, vx, vy, vz, t, mub, muq, mus, p;
-  double psi1, psi2, psi3, psi4, psi5, psi6, psi7, psi8, psi9, psi10;
 
   cout << "initiated Momentum Anizotropy computation as Maniz routine" << endl;
 
