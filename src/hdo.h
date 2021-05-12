@@ -51,4 +51,4 @@ public:
  void performStep(void);
  // gets the current proper time
  inline double getTau() { return tau; }
-};
+ inline double getPsi() { return psi1, psi2, psi3, psi4, psi5, psi6, psi7, psi8, psi9, psi10; };
