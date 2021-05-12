@@ -36,7 +36,6 @@
 
 using namespace std;
 
-double psi1, psi2, psi3, psi4, psi5, psi6, psi7, psi8, psi9, psi10;
 namespace output{  // a namespace containing all the output streams
   ofstream fkw, fkw_dim, fxvisc, fyvisc, fdiagvisc, fx,
      fy, fdiag, fz, faniz, f2d, ffreeze, maniz;
