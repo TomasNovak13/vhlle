@@ -11,7 +11,7 @@ private:
  Fluid *f;
  EoS *eos;
  TransportCoeff *trcoeff;
- double dt, tau;  // dt: timestep, tau: current value of the proper time
+ double dt, tau, psi1, psi2, psi3, psi4, psi5, psi6, psi7, psi8, psi9, psi10;  // dt: timestep, tau: current value of the proper time
  double tau_z;    // effective value of the proper time used in 1/tau factors in
                   // the fluxes. Used to increase the accuracy
 public:
