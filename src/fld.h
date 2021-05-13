@@ -15,7 +15,7 @@ private:
  Cell *cell;            // 3D hydro grid, packed in 1D array
  Cell *cell0;           // reference to cell containing all zero quantities
  int nx, ny, nz;        // dimensions of the grid
-                        // physical dimensions of the grid
+ double psi1, psi2, psi3, psi4,  psi5,  psi6,  psi7,  psi8,  psi9,  psi10;            // physical dimensions of the grid
  double minx, maxx, miny, maxy, minz, maxz;
  double dx, dy, dz, dt;  // physical sizes of the hydro cell and timestep
  double ecrit;
