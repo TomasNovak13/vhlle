@@ -58,7 +58,7 @@ void Fluid::getCMFvariables(Cell *c, double tau, double &e, double &nb,
 Fluid::Fluid(EoS *_eos, EoS *_eosH, TransportCoeff *_trcoeff, int _nx, int _ny,
              int _nz, double _minx, double _maxx, double _miny, double _maxy,
              double _minz, double _maxz, double _dt, double eCrit) {
- psi1 = 0., psi2 = .0, psi3 = 0., psi4 = 0.,  psi5 = 0.,  psi6 = 0.,  psi7 = 0., psi8 = 0.,  psi9 = 0.,  psi10 = 0.;               
+ psi1 = 0., psi2 = .0, psi3 = 0., psi4 = 0.,  psi5 = 0.,  psi6 = 0.,  psi7 = 0., psi8 = 0.,  psi9 = 0.,  psi10 = 0.;
  eos = _eos;
  eosH = _eosH;
  trcoeff = _trcoeff;
@@ -770,6 +770,8 @@ void Fluid::outputManiz(double tau) {
   //cout << (1. - vx * vx - vy * vy - vz*vz) << setw(10) << "gamma" << setw(10) << e << setw(10) << "energie" << setw(10) << (vx*vy*(e+p))  << setw(10) << "v_z" << setw(10) << q_1 << setw(10) << "those are Q's"  <<  setw(10) << q_2 << setw(10) << cos(order*phi) <<  setw(10) << sin(order*phi) << endl;
   }
 }
+
+  if( tau < 0.63 ){
   psi1 = atan2( q_2 , q_1 );
   //cout << psi << setw(10) << "<- psi" << setw(10) << q_1 << setw(10) << "<- q_1" << setw(10) << q_2 << setw(10) << "<- q_2" << endl;
   //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den. MidRap restriction
@@ -784,8 +786,8 @@ void Fluid::outputManiz(double tau) {
   psi7 = atan2( q_14 , q_13 )/3 + 3.1415/3;   //(m,n)=(2,3)
   psi8 = atan2( q_16 , q_15 )/3 + 3.1415/3;   //(m,n)=(3,3)
   psi9 = atan2( q_18 , q_17 )/4 + 3.1415/4;   //(m,n)=(2,4)
-
-   std::cout << setw(15) << "Eccentricity psi's" << setw(15) << tau << setw(15) << psi5 << setw(15) << psi6 << setw(15) << psi7 << setw(15) << psi8 << setw(15) << "Eccentricity psi's" +  '\n';
+}
+   std::cout << setw(15) << "Eccentricity psi's >>" << setw(15) << tau << setw(15) << psi5 << setw(15) << psi6 << setw(15) << psi7 << setw(15) << psi8 << setw(15) << "<< Eccentricity psi's" +  '\n';
 
 
     for (int ix = 2; ix < nx - 2; ix++)
