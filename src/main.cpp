@@ -51,7 +51,7 @@ int icModel,
 double epsilon0, Rgt, Rgz, impactPar, s0ScaleFactor;
 
 void setDefaultParameters() {
- tauResize = 4.0;
+ tauResize = 40.0;
 }
 
 void readParameters(char *parFile) {

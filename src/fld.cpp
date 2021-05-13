@@ -1010,6 +1010,7 @@ void Fluid::outputManiz(double tau) {
 }
   }
 
+  if( tau > 0.63 ){
 
   output::maniz <<  setw(5) << tau << setw(18) << eps_p_num31/eps_p_den31 << setw(18) << eps_p_num1/eps_p_den1 << setw(18) << eps_p_num2/eps_p_den2 << setw(18) << eps_p_num8/eps_p_den8 << setw(18) << eps_p_num4/eps_p_den4 << setw(18) <<
    eps_p_num11/eps_p_den11 <<  setw(18) << eps_p_num12/eps_p_den12 << setw(18) << eps_p_num32/eps_p_den32 <<  setw(18) << eps_p_num3/eps_p_den3 << setw(18) << eps_p_num5/eps_p_den5 << setw(18) << eps_p_num6/eps_p_den6 << setw(18) <<
@@ -1017,6 +1018,7 @@ void Fluid::outputManiz(double tau) {
    eps_p_num16/eps_p_den16 << setw(18) << eps_p_num17/eps_p_den17 << setw(18) << eps_p_num18/eps_p_den18 << setw(18) << eps_p_num19/eps_p_den19 << setw(18) << eps_p_num20/eps_p_den20 << setw(18) << eps_p_num34/eps_p_den34  << setw(18) <<
    eps_p_num21/eps_p_den21 << setw(18) << eps_p_num22/eps_p_den22 << setw(18) << eps_p_num23/eps_p_den23 << setw(18) << eps_p_num24/eps_p_den24 <<  setw(18) << eps_p_num29/eps_p_den29 << setw(18) << eps_p_num35/eps_p_den35  << setw(18) << eps_p_num25/eps_p_den25 << setw(18) << eps_p_num26/eps_p_den26
    << setw(18) << eps_p_num27/eps_p_den27 << setw(18) << eps_p_num28/eps_p_den28  << setw(18) << eps_p_num30/eps_p_den30 << setw(18) << psi10 << setw(18) << psi5 << setw(18) << psi7 << setw(18) << psi9 << endl;
+}
 }
 
 
