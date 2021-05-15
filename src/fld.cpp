@@ -771,7 +771,7 @@ void Fluid::outputManiz(double tau) {
   }
 }
 
-  if( tau < 0.5 ){
+  if( tau < 0.62 ){
   psi1 = atan2( q_2 , q_1 );
   //cout << psi << setw(10) << "<- psi" << setw(10) << q_1 << setw(10) << "<- q_1" << setw(10) << q_2 << setw(10) << "<- q_2" << endl;
   //Using phasefactor psi in space averaging of anizotropies esp_p_num, resp. esp_p_den. MidRap restriction
@@ -779,14 +779,22 @@ void Fluid::outputManiz(double tau) {
   psi3 = atan2( q_6 , q_5 ); //Order 1 = 2
   psi4 = atan2( q_8 , q_7 ); // Order 3 = 4
 
+
+  psi5 = atan2( q_10 , q_9 ) + 3.1415;   //(m,n)=(2,2) RIGHT definition
+
   //Eccentricity psis for Neimi's definition
-  psi10 = atan2( q_20 , q_19 )/2 + 3.1415/2;   //(m,n)=(2,1)
-   psi5 = atan2( q_10 , q_9 )/2 + 3.1415/2;   //(m,n)=(2,2) RIGHT definition
-  //psi5 = atan2( q_10 , q_9 ) + 3.1415 // WRONG definition
+//psi10 = atan2( q_20 , q_19 ) + 3.1415;   //(m,n)=(2,1)
+//psi6 = atan2( q_12 , q_11 )/2 + 3.1415/2;   //(m,n)=(3,2)
+//psi7 = atan2( q_14 , q_13 )/3 + 3.1415/3;   //(m,n)=(2,3)
+//psi8 = atan2( q_16 , q_15 )/3 + 3.1415/3;   //(m,n)=(3,3)
+//psi9 = atan2( q_18 , q_17 )/4 + 3.1415/4;   //(m,n)=(2,4)
+
+  psi10 = psi5;
+  psi5 = psi5/2;   //(m,n)=(2,2) RIGHT definition
   psi6 = atan2( q_12 , q_11 )/2 + 3.1415/2;   //(m,n)=(3,2)
-  psi7 = atan2( q_14 , q_13 )/3 + 3.1415/3;   //(m,n)=(2,3)
+  psi7 = psi5/3;   //(m,n)=(2,3)
   psi8 = atan2( q_16 , q_15 )/3 + 3.1415/3;   //(m,n)=(3,3)
-  psi9 = atan2( q_18 , q_17 )/4 + 3.1415/4;   //(m,n)=(2,4)
+  psi9 = psi5/4;   //(m,n)=(2,4)
 }
    std::cout << setw(15) << "Eccentricity psi's >>" << setw(15) << tau << setw(15) << psi5 << setw(15) << psi6 << setw(15) << psi7 << setw(15) << psi8 << setw(15) << "<< Eccentricity psi's" +  '\n';
 
